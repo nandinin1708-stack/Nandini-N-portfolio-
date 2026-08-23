@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Nandini N | Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <a href="#home" class="logo">
+                Nandini N
+            </a>
+
+            <div class="nav-links">
+
+                <a href="#home">Home</a>
+
+                <a href="#about">About</a>
+
+                <a href="#skills">Skills</a>
+
+                <a href="#projects">Projects</a>
+
+                <a href="#contact">Contact</a>
+
+            </div>
+
+            <button
+                class="theme-button"
+                id="themeButton">
+
+                ☀
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- HOME -->
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <h1>
+                    Hello, I am
+                    <span>Nandini N</span>
+                </h1>
+
+                <p>
+                    I am a Computer Science and Engineering student
+                    interested in website development and programming.
+                    I enjoy creating useful and user-friendly digital
+                    solutions for real-world problems.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#projects"
+                       class="button primary-button">
+
+                        View Projects
+
+                    </a>
+
+                    <a href="#contact"
+                       class="button">
+
+                        Contact Me
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section id="about">
+
+            <div class="section-title">
+
+                <h2>About Me</h2>
+
+                <p>
+                    A little information about me.
+                </p>
+
+            </div>
+
+
+            <div class="about-grid">
+
+                <article class="about-card">
+
+                    <h3>Who I Am</h3>
+
+                    <p>
+                        I am a Computer Science and Engineering student
+                        interested in programming, website development
+                        and creating practical solutions for real-world
+                        problems.
+                    </p>
+
+                </article>
+
+
+                <article class="about-card">
+
+                    <h3>My Goal</h3>
+
+                    <p>
+                        My goal is to improve my technical knowledge,
+                        build meaningful projects and continuously learn
+                        new technologies in computer science.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS -->
+
+        <section id="skills">
+
+            <div class="section-title">
+
+                <h2>My Skills</h2>
+
+                <p>
+                    My current technical skills.
+                </p>
+
+            </div>
+
+
+            <div class="skills-grid">
+
+                <article class="skill-card">
+
+                    <h3>
+                        C Programming
+                    </h3>
+
+                    <p>
+                         I use C to understand programming
+                        fundamentals, logic, problem solving,
+                        loops, functions, arrays, and algorithms.
+                    </p>
+
+                </article>
+
+
+                <article class="skill-card">
+
+                    <h3>Python</h3>
+
+                    <p>
+                       Python helps me write simple and
+                        powerful programs. I am learning
+                        problem solving and working with
+                        Python data structures.
+                    </p>
+
+                </article>
+
+
+                <article class="skill-card">
+
+                    <h3>HTML5</h3>
+
+                    <p>
+                         Basic knowledge of HTML5 for 
+                         creating simple web pages and 
+                         understanding website structure.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECTS -->
+
+        <section id="projects">
+
+            <div class="section-title">
+
+                <h2>My Projects</h2>
+
+                <p>
+                    Projects designed to solve practical problems.
+                </p>
+
+            </div>
+
+
+            <div class="projects-grid">
+
+
+                <!-- PROJECT 1 -->
+
+                <article class="project-card">
+
+                    <span class="project-number">
+                        PROJECT 01
+                    </span>
+
+                    <h3>
+                        Medicine Booking System
+                    </h3>
+
+                    <p>
+                        A user-friendly medicine booking system designed
+                        to make medicine ordering easier for patients,
+                        elderly people and users who may need assistance.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Users can choose their preferred pharmacy.
+                        </li>
+
+                        <li>
+                            Users can check medicine availability.
+                        </li>
+
+                        <li>
+                            Users can submit their medicine requirements.
+                        </li>
+
+                        <li>
+                            Pharmacist assistance is provided to help patients.
+                        </li>
+
+                    </ul>
+
+
+                    <button
+                        class="view-project"
+                        onclick="toggleProject('medicineDetails', this)">
+
+                        View Project
+
+                    </button>
+
+
+                    <div
+                        class="project-details"
+                        id="medicineDetails">
+
+                        <h4>Purpose</h4>
+
+                        <p>
+                            The project aims to make medicine ordering
+                            easier and more accessible for patients,
+                            elderly people and users who require
+                            additional support.
+                        </p>
+
+
+                        <h4>Pharmacy Selection</h4>
+
+                        <p>
+                            Users can select the pharmacy they prefer
+                            instead of being restricted to a single pharmacy.
+                        </p>
+
+
+                        <h4>Medicine Availability</h4>
+
+                        <p>
+                            Users can check whether the required medicine
+                            is available at the selected pharmacy.
+                        </p>
+
+
+                        <h4>Patient Assistance</h4>
+
+                        <p>
+                            The system is designed with simple interaction
+                            so patients can easily communicate their
+                            medicine requirements.
+                        </p>
+
+
+                        <h4>Pharmacist Guidance</h4>
+
+                        <p>
+                            The pharmacist can assist the patient by
+                            providing information about the medicines
+                            and explaining how they should be taken.
+                        </p>
+
+
+                        <h4>Voice Assistance</h4>
+
+                        <p>
+                            A voice assistance concept can make the system
+                            easier to use for people who find typing difficult.
+                        </p>
+
+
+                        <h4>Main Benefit</h4>
+
+                        <p>
+                            The system provides a convenient connection
+                            between patients and pharmacies while making
+                            medicine booking simpler.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 2 -->
+
+                <article class="project-card">
+
+                    <span class="project-number">
+                        PROJECT 02
+                    </span>
+
+                    <h3>
+                        Scholarship Recommendation System
+                    </h3>
+
+                    <p>
+                        A recommendation system that helps students
+                        discover suitable scholarships based on their
+                        eligibility.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            Students can enter their details.
+                        </li>
+
+                        <li>
+                            Scholarships can be matched with eligibility.
+                        </li>
+
+                        <li>
+                            Suitable scholarships can be prioritized.
+                        </li>
+
+                        <li>
+                            Important scholarship information can be organized.
+                        </li>
+
+                    </ul>
+
+
+                    <button
+                        class="view-project"
+                        onclick="toggleProject('scholarshipDetails', this)">
+
+                        View Project
+
+                    </button>
+
+
+                    <div
+                        class="project-details"
+                        id="scholarshipDetails">
+
+                        <h4>Purpose</h4>
+
+                        <p>
+                            The project helps students find suitable
+                            scholarship opportunities without having
+                            to search through many different sources.
+                        </p>
+
+
+                        <h4>Eligibility Checking</h4>
+
+                        <p>
+                            Student information can be used to identify
+                            scholarships for which the student may be eligible.
+                        </p>
+
+
+                        <h4>Personalized Recommendation</h4>
+
+                        <p>
+                            Suitable scholarships are recommended according
+                            to the student's eligibility and provided details.
+                        </p>
+
+
+                        <h4>Priority Listing</h4>
+
+                        <p>
+                            Scholarships can be displayed according to
+                            eligibility and priority so students can focus
+                            on the most relevant opportunities first.
+                        </p>
+
+
+                        <h4>Easy Scholarship Search</h4>
+
+                        <p>
+                            The system reduces the time and effort required
+                            to search for suitable scholarships.
+                        </p>
+
+
+                        <h4>Application Information</h4>
+
+                        <p>
+                            Important scholarship details and application
+                            requirements can be presented clearly in one place.
+                        </p>
+
+
+                        <h4>Main Benefit</h4>
+
+                        <p>
+                            The system helps students discover relevant
+                            scholarship opportunities more efficiently
+                            and makes the search process easier.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section id="contact">
+
+            <div class="section-title">
+
+                <h2>Contact Me</h2>
+
+                <p>
+                    Feel free to contact me for opportunities and projects.
+                </p>
+
+            </div>
+
+
+            <div class="contact-box">
+
+                <div class="contact-item">
+
+                    <h3>Name</h3>
+
+                    <p>Nandini N</p>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <h3>Phone</h3>
+
+                    <p>
+                        +91 XXXXX XXXXX
+                    </p>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <h3>Email</h3>
+
+                    <p>
+                        your-email@example.com
+                    </p>
+
+                </div>
+
+
+                <div class="contact-item">
+
+                    <h3>Location</h3>
+
+                    <p>
+                        Bengaluru, Karnataka, India
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Nandini N. All Rights Reserved.
+        </p>
+
+    </footer>
+    
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
