@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskFlow - To-Do List</title>
+
+    <title>Weather Dashboard</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,54 +13,79 @@
 
     <div class="container">
 
-        <div class="todo-app">
+        <div class="weather-card">
 
-            <h1>TaskFlow</h1>
-            <p class="subtitle">JavaScript To-Do List</p>
+            <h1>Weather Dashboard</h1>
 
-            <!-- Add Task -->
-            <form id="todoForm">
-                <input 
-                    type="text" 
-                    id="todoInput" 
-                    placeholder="Enter a task..."
+            <p class="subtitle">
+                Real-time weather information
+            </p>
+
+            <!-- Search -->
+            <form id="searchForm">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Enter city name"
                     required
                 >
-                <button type="submit">Add Task</button>
+
+                <button type="submit">
+                    Search
+                </button>
+
             </form>
 
-            <!-- Filters -->
-            <div class="filters">
-                <button class="filter active" data-filter="all">
-                    All
-                </button>
+            <!-- Loading -->
+            <p id="loading" class="loading">
+                Loading...
+            </p>
 
-                <button class="filter" data-filter="active">
-                    Active
-                </button>
+            <!-- Error -->
+            <div id="errorMessage" class="error"></div>
 
-                <button class="filter" data-filter="completed">
-                    Completed
-                </button>
+            <!-- Weather Result -->
+            <div id="weatherResult" class="weather-result">
 
-                <button id="clearCompleted">
-                    Clear Completed
-                </button>
-            </div>
+                <h2 id="cityName">--</h2>
 
-            <!-- Task List -->
-            <ul id="todoList"></ul>
+                <p id="date">--</p>
 
-            <!-- Empty Message -->
-            <div id="emptyMessage">
-                <h3>No tasks yet</h3>
-                <p>Add your first task above.</p>
-            </div>
+                <div class="temperature">
+                    <span id="temperature">--</span>°C
+                </div>
 
-            <!-- Footer -->
-            <div class="footer">
-                <span id="taskCount">0 tasks</span>
-                <span id="remainingCount">0 remaining</span>
+                <p id="condition">--</p>
+
+                <div class="weather-details">
+
+                    <div class="detail">
+                        <span>💧</span>
+                        <p>Humidity</p>
+                        <strong id="humidity">--%</strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>💨</span>
+                        <p>Wind Speed</p>
+                        <strong id="windSpeed">-- km/h</strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>🌡️</span>
+                        <p>Feels Like</p>
+                        <strong id="feelsLike">--°C</strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>☁️</span>
+                        <p>Cloud Cover</p>
+                        <strong id="cloudCover">--%</strong>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>

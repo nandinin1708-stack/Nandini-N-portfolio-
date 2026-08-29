@@ -6,236 +6,230 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
+
+    background: #f2f5f9;
+
     color: #222;
+
     min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
 }
 
 .container {
     width: 100%;
-    max-width: 750px;
-    margin: 50px auto;
-    padding: 20px;
+
+    max-width: 700px;
 }
 
-.todo-app {
+.weather-card {
     background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
-    font-size: 35px;
-    margin-bottom: 5px;
+
+    font-size: 34px;
+
+    margin-bottom: 8px;
 }
 
 .subtitle {
     text-align: center;
+
     color: #777;
+
     margin-bottom: 25px;
 }
 
-/* Add Task Form */
 
-#todoForm {
+/* Search */
+
+#searchForm {
     display: flex;
+
     gap: 10px;
-    margin-bottom: 20px;
+
+    margin-bottom: 25px;
 }
 
-#todoInput {
+#cityInput {
     flex: 1;
+
     padding: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+
     font-size: 16px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
     outline: none;
 }
 
-#todoInput:focus {
-    border-color: #1557c0;
+#cityInput:focus {
+    border-color: #1769aa;
 }
 
-#todoForm button {
-    padding: 14px 20px;
+#searchForm button {
+    padding: 14px 22px;
+
     border: none;
-    background: #1557c0;
-    color: white;
+
     border-radius: 8px;
-    cursor: pointer;
+
+    background: #1769aa;
+
+    color: white;
+
     font-weight: bold;
+
+    cursor: pointer;
 }
 
-#todoForm button:hover {
-    background: #0d46a0;
+#searchForm button:hover {
+    background: #0d527f;
 }
 
-/* Filters */
 
-.filters {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+/* Loading */
+
+.loading {
+    text-align: center;
+
+    color: #1769aa;
+
+    display: none;
+
+    margin: 15px;
+}
+
+
+/* Error */
+
+.error {
+    text-align: center;
+
+    color: #c62828;
+
+    background: #ffebee;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+
+    display: none;
+}
+
+
+/* Weather */
+
+.weather-result {
+    text-align: center;
+
+    padding-top: 10px;
+}
+
+.weather-result h2 {
+    font-size: 30px;
+
+    margin-bottom: 5px;
+}
+
+#date {
+    color: #777;
+
     margin-bottom: 15px;
 }
 
-.filters button {
-    padding: 9px 13px;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    background: #eeeeee;
+.temperature {
+    font-size: 60px;
+
+    font-weight: bold;
+
+    margin: 10px 0;
 }
 
-.filters button:hover {
-    background: #dddddd;
+#condition {
+    font-size: 20px;
+
+    margin-bottom: 25px;
 }
 
-.filters .active {
-    background: #1557c0;
-    color: white;
+
+/* Weather Details */
+
+.weather-details {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
 }
 
-#clearCompleted {
-    margin-left: auto;
-    color: #b00020;
+.detail {
+    background: #f5f7fa;
+
+    padding: 20px;
+
+    border-radius: 12px;
 }
 
-/* Task List */
-
-#todoList {
-    list-style: none;
+.detail span {
+    font-size: 25px;
 }
 
-.todo-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 15px 5px;
-    border-bottom: 1px solid #eee;
-}
-
-.todo-check {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-.todo-text {
-    flex: 1;
-    font-size: 16px;
-    word-break: break-word;
-}
-
-/* Completed Task */
-
-.todo-item.completed .todo-text {
-    text-decoration: line-through;
-    color: #888;
-}
-
-/* Action Buttons */
-
-.actions {
-    display: flex;
-    gap: 5px;
-}
-
-.action-btn {
-    border: none;
-    padding: 7px 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #eeeeee;
-}
-
-.action-btn:hover {
-    background: #dddddd;
-}
-
-.delete-btn:hover {
-    color: red;
-}
-
-/* Edit Input */
-
-.edit-input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #1557c0;
-    border-radius: 6px;
-    font-size: 15px;
-}
-
-/* Empty Message */
-
-#emptyMessage {
-    text-align: center;
-    padding: 40px 10px;
+.detail p {
     color: #777;
+
+    margin: 7px 0;
 }
 
-#emptyMessage h3 {
-    color: #333;
-    margin-bottom: 8px;
+.detail strong {
+    font-size: 18px;
 }
 
-.hidden {
-    display: none !important;
-}
-
-/* Footer */
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-    color: #777;
-    font-size: 14px;
-}
 
 /* Mobile */
 
 @media (max-width: 600px) {
 
-    .container {
-        margin: 20px auto;
-        padding: 10px;
+    .weather-card {
+        padding: 22px;
     }
 
-    .todo-app {
-        padding: 20px;
+    h1 {
+        font-size: 28px;
     }
 
-    #todoForm {
+    #searchForm {
         flex-direction: column;
     }
 
-    #todoForm button {
+    #searchForm button {
         width: 100%;
     }
 
-    .filters {
-        flex-direction: column;
+    .weather-details {
+        grid-template-columns: 1fr;
     }
 
-    .filters button {
-        width: 100%;
-    }
-
-    #clearCompleted {
-        margin-left: 0;
-    }
-
-    .todo-item {
-        align-items: flex-start;
-    }
-
-    .actions {
-        flex-direction: column;
+    .temperature {
+        font-size: 50px;
     }
 }

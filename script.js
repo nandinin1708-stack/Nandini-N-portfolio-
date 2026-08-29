@@ -1,621 +1,329 @@
-// Key used to store tasks in browser localStorage
-const STORAGE_KEY = "taskflow_todos";
-
-// Load saved tasks
-let todos = loadTodos();
-
-// Current filter
-let currentFilter = "all";
-
 // Get HTML elements
-const form = document.getElementById("todoForm");
-const input = document.getElementById("todoInput");
-const todoList = document.getElementById("todoList");
-const emptyMessage = document.getElementById("emptyMessage");
 
-const taskCount = document.getElementById("taskCount");
-const remainingCount = document.getElementById("remainingCount");
+const searchForm =
+    document.getElementById("searchForm");
 
-const clearCompleted =
-    document.getElementById("clearCompleted");
+const cityInput =
+    document.getElementById("cityInput");
 
-const filterButtons =
-    document.querySelectorAll(".filter");
+const loading =
+    document.getElementById("loading");
 
+const errorMessage =
+    document.getElementById("errorMessage");
 
-// ===============================
-// LOAD DATA FROM LOCAL STORAGE
-// ===============================
+const weatherResult =
+    document.getElementById("weatherResult");
 
-function loadTodos() {
+const cityName =
+    document.getElementById("cityName");
 
-    try {
+const date =
+    document.getElementById("date");
 
-        const savedTodos =
-            localStorage.getItem(STORAGE_KEY);
+const temperature =
+    document.getElementById("temperature");
 
-        return savedTodos
-            ? JSON.parse(savedTodos)
-            : [];
+const condition =
+    document.getElementById("condition");
 
-    } catch (error) {
+const humidity =
+    document.getElementById("humidity");
 
-        return [];
+const windSpeed =
+    document.getElementById("windSpeed");
 
-    }
-}
+const feelsLike =
+    document.getElementById("feelsLike");
 
+const cloudCover =
+    document.getElementById("cloudCover");
 
-// ===============================
-// SAVE DATA TO LOCAL STORAGE
-// ===============================
 
-function saveTodos() {
+// ======================================
+// SEARCH CITY
+// ======================================
 
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(todos)
-    );
-}
-
-
-// ===============================
-// CREATE NEW TASK
-// ===============================
-
-function createTodo(text) {
-
-    return {
-        id:
-            Date.now().toString() +
-            Math.random().toString(16).slice(2),
-
-        text: text.trim(),
-
-        completed: false
-    };
-}
-
-
-// ===============================
-// GET FILTERED TASKS
-// ===============================
-
-function getFilteredTodos() {
-
-    if (currentFilter === "active") {
-
-        return todos.filter(
-            todo => !todo.completed
-        );
-    }
-
-    if (currentFilter === "completed") {
-
-        return todos.filter(
-            todo => todo.completed
-        );
-    }
-
-    return todos;
-}
-
-
-// ===============================
-// DISPLAY TASKS
-// ===============================
-
-function render() {
-
-    // Clear old list
-    todoList.innerHTML = "";
-
-    const filteredTodos =
-        getFilteredTodos();
-
-    filteredTodos.forEach(todo => {
-
-        // Create list item
-        const li =
-            document.createElement("li");
-
-        li.className =
-            "todo-item";
-
-        if (todo.completed) {
-
-            li.classList.add("completed");
-        }
-
-        li.dataset.id = todo.id;
-
-
-        // Checkbox
-        const checkbox =
-            document.createElement("input");
-
-        checkbox.type = "checkbox";
-
-        checkbox.className =
-            "todo-check";
-
-        checkbox.checked =
-            todo.completed;
-
-
-        // Task text
-        const text =
-            document.createElement("span");
-
-        text.className =
-            "todo-text";
-
-        text.textContent =
-            todo.text;
-
-
-        // Actions container
-        const actions =
-            document.createElement("div");
-
-        actions.className =
-            "actions";
-
-
-        // Edit button
-        const editButton =
-            document.createElement("button");
-
-        editButton.type = "button";
-
-        editButton.className =
-            "action-btn";
-
-        editButton.textContent =
-            "Edit";
-
-        editButton.dataset.action =
-            "edit";
-
-
-        // Delete button
-        const deleteButton =
-            document.createElement("button");
-
-        deleteButton.type = "button";
-
-        deleteButton.className =
-            "action-btn delete-btn";
-
-        deleteButton.textContent =
-            "Delete";
-
-        deleteButton.dataset.action =
-            "delete";
-
-
-        // Add buttons
-        actions.appendChild(editButton);
-        actions.appendChild(deleteButton);
-
-
-        // Add everything to list item
-        li.appendChild(checkbox);
-        li.appendChild(text);
-        li.appendChild(actions);
-
-
-        // Add list item to page
-        todoList.appendChild(li);
-
-    });
-
-
-    updateSummary();
-
-    updateEmptyMessage(
-        filteredTodos.length
-    );
-}
-
-
-// ===============================
-// UPDATE TASK COUNTER
-// ===============================
-
-function updateSummary() {
-
-    const total =
-        todos.length;
-
-    const remaining =
-        todos.filter(
-            todo => !todo.completed
-        ).length;
-
-
-    taskCount.textContent =
-        `${total} ${total === 1 ? "task" : "tasks"}`;
-
-    remainingCount.textContent =
-        `${remaining} remaining`;
-}
-
-
-// ===============================
-// EMPTY MESSAGE
-// ===============================
-
-function updateEmptyMessage(count) {
-
-    if (count === 0) {
-
-        emptyMessage.classList.remove(
-            "hidden"
-        );
-
-    } else {
-
-        emptyMessage.classList.add(
-            "hidden"
-        );
-    }
-}
-
-
-// ===============================
-// ADD TASK
-// ===============================
-
-form.addEventListener(
+searchForm.addEventListener(
     "submit",
-    function(event) {
+    async function(event) {
 
         event.preventDefault();
 
-        const text =
-            input.value.trim();
+        const city =
+            cityInput.value.trim();
 
-        if (text === "") {
+        if (city === "") {
             return;
         }
 
-
-        const newTodo =
-            createTodo(text);
-
-
-        // Add task
-        todos.unshift(newTodo);
-
-
-        // Save task
-        saveTodos();
-
-
-        // Display tasks
-        render();
-
-
-        // Clear input
-        input.value = "";
-
-        input.focus();
+        await getWeather(city);
     }
 );
 
 
-// ===============================
-// CHECKBOX - COMPLETE TASK
-// ===============================
+// ======================================
+// GET WEATHER
+// ======================================
 
-todoList.addEventListener(
-    "change",
-    function(event) {
+async function getWeather(city) {
 
+    try {
+
+        // Show loading
+        loading.style.display = "block";
+
+        // Hide previous error
+        errorMessage.style.display = "none";
+
+
+        // ==================================
+        // STEP 1: GET CITY COORDINATES
+        // ==================================
+
+        const locationURL =
+            `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
+
+
+        const locationResponse =
+            await fetch(locationURL);
+
+
+        // Check network response
+        if (!locationResponse.ok) {
+
+            throw new Error(
+                "Unable to connect to the location service."
+            );
+        }
+
+
+        // Convert response to JSON
+        const locationData =
+            await locationResponse.json();
+
+
+        // Check if city exists
         if (
-            !event.target.classList.contains(
-                "todo-check"
-            )
-        ) {
-            return;
-        }
-
-
-        const listItem =
-            event.target.closest(
-                ".todo-item"
-            );
-
-
-        const id =
-            listItem.dataset.id;
-
-
-        const todo =
-            todos.find(
-                todo => todo.id === id
-            );
-
-
-        if (todo) {
-
-            todo.completed =
-                event.target.checked;
-
-            saveTodos();
-
-            render();
-        }
-
-    }
-);
-
-
-// ===============================
-// EDIT AND DELETE
-// ===============================
-
-todoList.addEventListener(
-    "click",
-    function(event) {
-
-        const button =
-            event.target.closest("button");
-
-        if (!button) {
-            return;
-        }
-
-
-        const listItem =
-            button.closest(".todo-item");
-
-
-        const id =
-            listItem.dataset.id;
-
-
-        const todo =
-            todos.find(
-                todo => todo.id === id
-            );
-
-
-        if (!todo) {
-            return;
-        }
-
-
-        // DELETE
-        if (
-            button.dataset.action === "delete"
+            !locationData.results ||
+            locationData.results.length === 0
         ) {
 
-            todos =
-                todos.filter(
-                    todo => todo.id !== id
-                );
-
-            saveTodos();
-
-            render();
-        }
-
-
-        // EDIT
-        if (
-            button.dataset.action === "edit"
-        ) {
-
-            startEditing(
-                listItem,
-                todo
+            throw new Error(
+                "City not found. Please enter a valid city name."
             );
         }
 
-    }
-);
+
+        // Get first city result
+        const location =
+            locationData.results[0];
 
 
-// ===============================
-// EDIT TASK
-// ===============================
+        const latitude =
+            location.latitude;
 
-function startEditing(item, todo) {
+        const longitude =
+            location.longitude;
 
-    const textElement =
-        item.querySelector(
-            ".todo-text"
-        );
 
-    const actions =
-        item.querySelector(
-            ".actions"
+        // ==================================
+        // STEP 2: GET WEATHER DATA
+        // ==================================
+
+        const weatherURL =
+            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,cloud_cover,wind_speed_10m&timezone=auto`;
+
+
+        const weatherResponse =
+            await fetch(weatherURL);
+
+
+        if (!weatherResponse.ok) {
+
+            throw new Error(
+                "Unable to retrieve weather data."
+            );
+        }
+
+
+        // Convert JSON response
+        const weatherData =
+            await weatherResponse.json();
+
+
+        // ==================================
+        // STEP 3: DISPLAY DATA
+        // ==================================
+
+        displayWeather(
+            location,
+            weatherData
         );
 
 
-    // Create input
-    const editInput =
-        document.createElement("input");
+    } catch (error) {
 
-    editInput.className =
-        "edit-input";
+        // Error handling
+        showError(error.message);
 
-    editInput.type =
-        "text";
+    } finally {
 
-    editInput.value =
-        todo.text;
-
-
-    // Save button
-    const saveButton =
-        document.createElement("button");
-
-    saveButton.type = "button";
-
-    saveButton.className =
-        "action-btn";
-
-    saveButton.textContent =
-        "Save";
-
-
-    // Cancel button
-    const cancelButton =
-        document.createElement("button");
-
-    cancelButton.type = "button";
-
-    cancelButton.className =
-        "action-btn";
-
-    cancelButton.textContent =
-        "Cancel";
-
-
-    // Replace text with input
-    textElement.replaceWith(
-        editInput
-    );
-
-
-    actions.innerHTML = "";
-
-    actions.appendChild(
-        saveButton
-    );
-
-    actions.appendChild(
-        cancelButton
-    );
-
-
-    editInput.focus();
-
-    editInput.select();
-
-
-    // Save edited task
-    saveButton.addEventListener(
-        "click",
-        function() {
-
-            const newText =
-                editInput.value.trim();
-
-
-            if (newText === "") {
-                return;
-            }
-
-
-            todo.text =
-                newText;
-
-
-            saveTodos();
-
-            render();
-        }
-    );
-
-
-    // Cancel editing
-    cancelButton.addEventListener(
-        "click",
-        function() {
-
-            render();
-        }
-    );
-
-
-    // Enter = Save
-    editInput.addEventListener(
-        "keydown",
-        function(event) {
-
-            if (event.key === "Enter") {
-
-                saveButton.click();
-            }
-
-            if (event.key === "Escape") {
-
-                cancelButton.click();
-            }
-
-        }
-    );
+        // Hide loading
+        loading.style.display = "none";
+    }
 }
 
 
-// ===============================
-// FILTER TASKS
-// ===============================
+// ======================================
+// DISPLAY WEATHER
+// ======================================
 
-filterButtons.forEach(
-    button => {
+function displayWeather(
+    location,
+    weatherData
+) {
 
-        button.addEventListener(
-            "click",
-            function() {
-
-                currentFilter =
-                    button.dataset.filter;
+    const current =
+        weatherData.current;
 
 
-                // Remove active class
-                filterButtons.forEach(
-                    btn => {
-
-                        btn.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
+    // City
+    cityName.textContent =
+        `${location.name}, ${location.country}`;
 
 
-                // Add active class
-                button.classList.add(
-                    "active"
-                );
+    // Date and time
+    date.textContent =
+        current.time;
 
 
-                render();
-            }
+    // Temperature
+    temperature.textContent =
+        Math.round(current.temperature_2m);
+
+
+    // Weather condition
+    condition.textContent =
+        getWeatherCondition(
+            current.weather_code
         );
 
+
+    // Humidity
+    humidity.textContent =
+        `${current.relative_humidity_2m}%`;
+
+
+    // Wind speed
+    windSpeed.textContent =
+        `${current.wind_speed_10m} km/h`;
+
+
+    // Feels like
+    feelsLike.textContent =
+        `${Math.round(
+            current.apparent_temperature
+        )}°C`;
+
+
+    // Cloud cover
+    cloudCover.textContent =
+        `${current.cloud_cover}%`;
+
+
+    // Show weather
+    weatherResult.style.display =
+        "block";
+}
+
+
+// ======================================
+// WEATHER CODE
+// ======================================
+
+function getWeatherCondition(code) {
+
+    if (code === 0) {
+        return "☀️ Clear Sky";
     }
-);
 
+    if (code === 1 ||
+        code === 2 ||
+        code === 3) {
 
-// ===============================
-// CLEAR COMPLETED TASKS
-// ===============================
-
-clearCompleted.addEventListener(
-    "click",
-    function() {
-
-        todos =
-            todos.filter(
-                todo => !todo.completed
-            );
-
-
-        saveTodos();
-
-        render();
+        return "⛅ Partly Cloudy";
     }
-);
+
+    if (code === 45 ||
+        code === 48) {
+
+        return "🌫️ Fog";
+    }
+
+    if (
+        code >= 51 &&
+        code <= 57
+    ) {
+
+        return "🌦️ Drizzle";
+    }
+
+    if (
+        code >= 61 &&
+        code <= 67
+    ) {
+
+        return "🌧️ Rain";
+    }
+
+    if (
+        code >= 71 &&
+        code <= 77
+    ) {
+
+        return "❄️ Snow";
+    }
+
+    if (
+        code >= 80 &&
+        code <= 82
+    ) {
+
+        return "🌧️ Rain Showers";
+    }
+
+    if (
+        code === 95
+    ) {
+
+        return "⛈️ Thunderstorm";
+    }
+
+    if (
+        code === 96 ||
+        code === 99
+    ) {
+
+        return "⛈️ Thunderstorm with Hail";
+    }
+
+    return "Weather information available";
+}
 
 
-// ===============================
-// INITIAL DISPLAY
-// ===============================
+// ======================================
+// ERROR MESSAGE
+// ======================================
 
-render();
+function showError(message) {
+
+    errorMessage.textContent =
+        message;
+
+    errorMessage.style.display =
+        "block";
+
+    weatherResult.style.display =
+        "none";
+}
