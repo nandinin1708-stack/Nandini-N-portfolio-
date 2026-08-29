@@ -4,232 +4,523 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
-
-    background: #f2f5f9;
-
+    background: #f5f6f8;
     color: #222;
+}
 
-    min-height: 100vh;
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    background: #111827;
+    color: white;
 
     display: flex;
-
-    justify-content: center;
-
     align-items: center;
+    justify-content: space-between;
 
-    padding: 20px;
+    padding: 18px 7%;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
 }
 
-.container {
-    width: 100%;
-
-    max-width: 700px;
+.logo {
+    font-size: 25px;
+    font-weight: bold;
 }
 
-.weather-card {
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #60a5fa;
+}
+
+.cart-button {
+    border: none;
+    background: #2563eb;
+    color: white;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+#cartCount {
     background: white;
+    color: #2563eb;
 
-    padding: 35px;
+    border-radius: 50%;
 
-    border-radius: 18px;
+    padding: 2px 7px;
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-left: 4px;
 }
 
-h1 {
-    text-align: center;
 
-    font-size: 34px;
+/* =========================
+   MAIN
+========================= */
 
-    margin-bottom: 8px;
+main {
+    min-height: 80vh;
 }
 
-.subtitle {
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
     text-align: center;
 
-    color: #777;
+    padding: 90px 20px;
+
+    background: white;
+}
+
+.hero h1 {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #666;
+
+    font-size: 18px;
 
     margin-bottom: 25px;
+}
+
+.primary-button {
+    display: inline-block;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 13px 25px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.primary-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products-page {
+    padding: 40px 7%;
+}
+
+.page-title {
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    font-size: 32px;
 }
 
 
 /* Search */
 
-#searchForm {
+.search-box {
+    max-width: 600px;
+
+    margin: 0 auto 25px;
+
     display: flex;
 
     gap: 10px;
-
-    margin-bottom: 25px;
 }
 
-#cityInput {
+.search-box input {
     flex: 1;
 
-    padding: 14px;
-
-    font-size: 16px;
+    padding: 13px;
 
     border: 1px solid #ccc;
 
     border-radius: 8px;
 
-    outline: none;
+    font-size: 16px;
 }
 
-#cityInput:focus {
-    border-color: #1769aa;
+
+/* Categories */
+
+.categories {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
 }
 
-#searchForm button {
-    padding: 14px 22px;
+.category-button {
+    border: none;
+
+    padding: 9px 15px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    background: #e5e7eb;
+}
+
+.category-button.active {
+    background: #2563eb;
+
+    color: white;
+}
+
+
+/* Product Grid */
+
+.product-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
+
+    transition: 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+}
+
+.product-card img {
+    width: 100%;
+
+    height: 210px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.product-info {
+    padding: 18px;
+}
+
+.product-info h3 {
+    margin-bottom: 8px;
+}
+
+.category {
+    color: #777;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.product-buttons {
+    display: flex;
+
+    gap: 8px;
+}
+
+.product-buttons button {
+    flex: 1;
+
+    padding: 9px;
 
     border: none;
 
-    border-radius: 8px;
-
-    background: #1769aa;
-
-    color: white;
-
-    font-weight: bold;
+    border-radius: 7px;
 
     cursor: pointer;
 }
 
-#searchForm button:hover {
-    background: #0d527f;
+.view-button {
+    background: #e5e7eb;
+}
+
+.add-button {
+    background: #2563eb;
+
+    color: white;
 }
 
 
-/* Loading */
+/* =========================
+   ABOUT
+========================= */
 
-.loading {
-    text-align: center;
+.about {
+    max-width: 800px;
 
-    color: #1769aa;
+    margin: 50px auto;
 
-    display: none;
+    background: white;
 
-    margin: 15px;
+    padding: 40px;
+
+    border-radius: 15px;
+
+    line-height: 1.7;
 }
 
-
-/* Error */
-
-.error {
-    text-align: center;
-
-    color: #c62828;
-
-    background: #ffebee;
-
-    padding: 10px;
-
-    border-radius: 8px;
-
-    margin-bottom: 15px;
-
-    display: none;
-}
-
-
-/* Weather */
-
-.weather-result {
-    text-align: center;
-
-    padding-top: 10px;
-}
-
-.weather-result h2 {
-    font-size: 30px;
-
-    margin-bottom: 5px;
-}
-
-#date {
-    color: #777;
-
+.about h1 {
     margin-bottom: 15px;
 }
 
-.temperature {
-    font-size: 60px;
 
-    font-weight: bold;
+/* =========================
+   PRODUCT DETAILS
+========================= */
 
-    margin: 10px 0;
-}
+.details {
+    max-width: 900px;
 
-#condition {
-    font-size: 20px;
+    margin: 50px auto;
 
-    margin-bottom: 25px;
-}
+    background: white;
 
+    padding: 30px;
 
-/* Weather Details */
+    border-radius: 15px;
 
-.weather-details {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+}
+
+.details img {
+    width: 100%;
+
+    max-height: 450px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+.details-info {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
 
     gap: 15px;
 }
 
-.detail {
-    background: #f5f7fa;
+.details-info h1 {
+    font-size: 32px;
+}
+
+.details-info p {
+    color: #666;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   CART
+========================= */
+
+.cart-page {
+    max-width: 800px;
+
+    margin: 40px auto;
+
+    padding: 20px;
+}
+
+.cart-item {
+    background: white;
+
+    margin-bottom: 12px;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.cart-item img {
+    width: 80px;
+
+    height: 80px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.remove-button {
+    background: #ef4444;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+}
+
+.total {
+    text-align: right;
+
+    background: white;
 
     padding: 20px;
 
-    border-radius: 12px;
+    border-radius: 10px;
+
+    font-size: 22px;
+
+    font-weight: bold;
 }
 
-.detail span {
-    font-size: 25px;
-}
 
-.detail p {
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    text-align: center;
+
+    padding: 50px;
+
     color: #777;
-
-    margin: 7px 0;
-}
-
-.detail strong {
-    font-size: 18px;
 }
 
 
-/* Mobile */
+/* =========================
+   FOOTER
+========================= */
 
-@media (max-width: 600px) {
+footer {
+    background: #111827;
 
-    .weather-card {
-        padding: 22px;
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+
+    margin-top: 40px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+        padding: 15px 5%;
     }
 
-    h1 {
-        font-size: 28px;
-    }
+    nav {
+        order: 3;
 
-    #searchForm {
-        flex-direction: column;
-    }
-
-    #searchForm button {
         width: 100%;
+
+        justify-content: center;
     }
 
-    .weather-details {
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .products-page {
+        padding: 30px 5%;
+    }
+
+    .details {
         grid-template-columns: 1fr;
+
+        margin: 25px 15px;
     }
 
-    .temperature {
-        font-size: 50px;
+    .cart-page {
+        margin: 20px 10px;
     }
 }

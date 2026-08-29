@@ -1,329 +1,912 @@
-// Get HTML elements
+// ==========================================
+// 30 PRODUCTS
+// ==========================================
 
-const searchForm =
-    document.getElementById("searchForm");
+const products = [
 
-const cityInput =
-    document.getElementById("cityInput");
+    {
+        id: 1,
+        name: "Wireless Headphones",
+        category: "Electronics",
+        price: 1999,
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+        description: "High-quality wireless headphones with clear sound and comfortable design."
+    },
 
-const loading =
-    document.getElementById("loading");
+    {
+        id: 2,
+        name: "Smart Watch",
+        category: "Electronics",
+        price: 2499,
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+        description: "Modern smartwatch with a stylish design for everyday use."
+    },
 
-const errorMessage =
-    document.getElementById("errorMessage");
+    {
+        id: 3,
+        name: "Running Shoes",
+        category: "Fashion",
+        price: 1799,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600",
+        description: "Comfortable running shoes suitable for exercise and daily use."
+    },
 
-const weatherResult =
-    document.getElementById("weatherResult");
+    {
+        id: 4,
+        name: "Backpack",
+        category: "Accessories",
+        price: 999,
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+        description: "Durable backpack suitable for college, travel and daily use."
+    },
 
-const cityName =
-    document.getElementById("cityName");
+    {
+        id: 5,
+        name: "Sunglasses",
+        category: "Fashion",
+        price: 799,
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600",
+        description: "Stylish sunglasses with a modern frame."
+    },
 
-const date =
-    document.getElementById("date");
+    {
+        id: 6,
+        name: "Laptop",
+        category: "Electronics",
+        price: 54999,
+        image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+        description: "Powerful laptop suitable for students, programming and everyday work."
+    },
 
-const temperature =
-    document.getElementById("temperature");
+    {
+        id: 7,
+        name: "Wireless Keyboard",
+        category: "Electronics",
+        price: 899,
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600",
+        description: "Compact wireless keyboard with comfortable keys."
+    },
 
-const condition =
-    document.getElementById("condition");
+    {
+        id: 8,
+        name: "Wireless Mouse",
+        category: "Electronics",
+        price: 599,
+        image: "https://images.unsplash.com/photo-1527814050087-3793815479db?w=600",
+        description: "Smooth and comfortable wireless mouse for everyday use."
+    },
 
-const humidity =
-    document.getElementById("humidity");
+    {
+        id: 9,
+        name: "Bluetooth Speaker",
+        category: "Electronics",
+        price: 1299,
+        image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600",
+        description: "Portable Bluetooth speaker with powerful sound."
+    },
 
-const windSpeed =
-    document.getElementById("windSpeed");
+    {
+        id: 10,
+        name: "Mobile Phone",
+        category: "Electronics",
+        price: 15999,
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+        description: "Modern smartphone with a bright display and powerful performance."
+    },
 
-const feelsLike =
-    document.getElementById("feelsLike");
+    {
+        id: 11,
+        name: "Tablet",
+        category: "Electronics",
+        price: 12999,
+        image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600",
+        description: "Lightweight tablet suitable for study, entertainment and browsing."
+    },
 
-const cloudCover =
-    document.getElementById("cloudCover");
+    {
+        id: 12,
+        name: "Power Bank",
+        category: "Electronics",
+        price: 999,
+        image: "https://images.unsplash.com/photo-1609592424866-1e7e3a6f7a7e?w=600",
+        description: "Portable power bank for charging your devices."
+    },
 
+    {
+        id: 13,
+        name: "USB Cable",
+        category: "Electronics",
+        price: 299,
+        image: "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=600",
+        description: "Durable charging and data transfer USB cable."
+    },
 
-// ======================================
-// SEARCH CITY
-// ======================================
+    {
+        id: 14,
+        name: "Denim Jacket",
+        category: "Fashion",
+        price: 1999,
+        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",
+        description: "Classic denim jacket with a comfortable fit."
+    },
 
-searchForm.addEventListener(
-    "submit",
-    async function(event) {
+    {
+        id: 15,
+        name: "Cotton T-Shirt",
+        category: "Fashion",
+        price: 599,
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",
+        description: "Comfortable cotton T-shirt for everyday wear."
+    },
 
-        event.preventDefault();
+    {
+        id: 16,
+        name: "Hoodie",
+        category: "Fashion",
+        price: 1299,
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",
+        description: "Warm and comfortable hoodie for casual wear."
+    },
 
-        const city =
-            cityInput.value.trim();
+    {
+        id: 17,
+        name: "Casual Shirt",
+        category: "Fashion",
+        price: 899,
+        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600",
+        description: "Stylish casual shirt suitable for everyday occasions."
+    },
 
-        if (city === "") {
-            return;
-        }
+    {
+        id: 18,
+        name: "Sports Shoes",
+        category: "Fashion",
+        price: 2299,
+        image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600",
+        description: "Lightweight sports shoes designed for comfort."
+    },
 
-        await getWeather(city);
+    {
+        id: 19,
+        name: "Handbag",
+        category: "Accessories",
+        price: 1499,
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600",
+        description: "Elegant handbag suitable for everyday use."
+    },
+
+    {
+        id: 20,
+        name: "Wallet",
+        category: "Accessories",
+        price: 499,
+        image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600",
+        description: "Compact wallet with multiple card slots."
+    },
+
+    {
+        id: 21,
+        name: "Travel Bag",
+        category: "Accessories",
+        price: 1799,
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+        description: "Spacious travel bag for short trips and journeys."
+    },
+
+    {
+        id: 22,
+        name: "Cap",
+        category: "Accessories",
+        price: 399,
+        image: "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600",
+        description: "Comfortable casual cap suitable for outdoor activities."
+    },
+
+    {
+        id: 23,
+        name: "Water Bottle",
+        category: "Accessories",
+        price: 499,
+        image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600",
+        description: "Reusable water bottle for school, college and travel."
+    },
+
+    {
+        id: 24,
+        name: "Coffee Mug",
+        category: "Home",
+        price: 299,
+        image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600",
+        description: "Simple and stylish coffee mug for everyday use."
+    },
+
+    {
+        id: 25,
+        name: "Desk Lamp",
+        category: "Home",
+        price: 799,
+        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600",
+        description: "Modern desk lamp suitable for studying and working."
+    },
+
+    {
+        id: 26,
+        name: "Plant Pot",
+        category: "Home",
+        price: 349,
+        image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600",
+        description: "Decorative plant pot for home and office spaces."
+    },
+
+    {
+        id: 27,
+        name: "Notebook",
+        category: "Stationery",
+        price: 199,
+        image: "https://images.unsplash.com/photo-1531346680769-a1d79b57de5b?w=600",
+        description: "Quality notebook suitable for notes and study."
+    },
+
+    {
+        id: 28,
+        name: "Pen Set",
+        category: "Stationery",
+        price: 149,
+        image: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=600",
+        description: "Smooth writing pen set for students and professionals."
+    },
+
+    {
+        id: 29,
+        name: "Calculator",
+        category: "Stationery",
+        price: 399,
+        image: "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600",
+        description: "Useful calculator for school, college and office work."
+    },
+
+    {
+        id: 30,
+        name: "Study Table",
+        category: "Home",
+        price: 3999,
+        image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600",
+        description: "Simple study table suitable for students and home offices."
     }
-);
+
+];
 
 
-// ======================================
-// GET WEATHER
-// ======================================
+// ==========================================
+// CART
+// ==========================================
 
-async function getWeather(city) {
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    try {
-
-        // Show loading
-        loading.style.display = "block";
-
-        // Hide previous error
-        errorMessage.style.display = "none";
+const app = document.getElementById("app");
 
 
-        // ==================================
-        // STEP 1: GET CITY COORDINATES
-        // ==================================
+// ==========================================
+// ROUTING
+// ==========================================
 
-        const locationURL =
-            `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
+function router() {
 
+    const hash = window.location.hash || "#home";
 
-        const locationResponse =
-            await fetch(locationURL);
+    if (hash === "#home") {
+        showHome();
+    }
 
+    else if (hash === "#products") {
+        showProducts();
+    }
 
-        // Check network response
-        if (!locationResponse.ok) {
+    else if (hash === "#about") {
+        showAbout();
+    }
 
-            throw new Error(
-                "Unable to connect to the location service."
-            );
-        }
+    else if (hash === "#cart") {
+        showCart();
+    }
 
+    else if (hash.startsWith("#product-")) {
 
-        // Convert response to JSON
-        const locationData =
-            await locationResponse.json();
-
-
-        // Check if city exists
-        if (
-            !locationData.results ||
-            locationData.results.length === 0
-        ) {
-
-            throw new Error(
-                "City not found. Please enter a valid city name."
-            );
-        }
-
-
-        // Get first city result
-        const location =
-            locationData.results[0];
-
-
-        const latitude =
-            location.latitude;
-
-        const longitude =
-            location.longitude;
-
-
-        // ==================================
-        // STEP 2: GET WEATHER DATA
-        // ==================================
-
-        const weatherURL =
-            `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,cloud_cover,wind_speed_10m&timezone=auto`;
-
-
-        const weatherResponse =
-            await fetch(weatherURL);
-
-
-        if (!weatherResponse.ok) {
-
-            throw new Error(
-                "Unable to retrieve weather data."
-            );
-        }
-
-
-        // Convert JSON response
-        const weatherData =
-            await weatherResponse.json();
-
-
-        // ==================================
-        // STEP 3: DISPLAY DATA
-        // ==================================
-
-        displayWeather(
-            location,
-            weatherData
+        const id = Number(
+            hash.replace("#product-", "")
         );
 
+        showProductDetails(id);
+    }
 
-    } catch (error) {
-
-        // Error handling
-        showError(error.message);
-
-    } finally {
-
-        // Hide loading
-        loading.style.display = "none";
+    else {
+        showHome();
     }
 }
 
-
-// ======================================
-// DISPLAY WEATHER
-// ======================================
-
-function displayWeather(
-    location,
-    weatherData
-) {
-
-    const current =
-        weatherData.current;
+window.addEventListener("hashchange", router);
 
 
-    // City
-    cityName.textContent =
-        `${location.name}, ${location.country}`;
+// ==========================================
+// HOME
+// ==========================================
+
+function showHome() {
+
+    app.innerHTML = `
+
+        <section class="hero">
+
+            <h1>Welcome to ShopEasy</h1>
+
+            <p>
+                Find quality products at affordable prices.
+            </p>
+
+            <a href="#products"
+               class="primary-button">
+                Shop Now
+            </a>
+
+        </section>
+
+    `;
+}
 
 
-    // Date and time
-    date.textContent =
-        current.time;
+// ==========================================
+// PRODUCTS
+// ==========================================
+
+function showProducts() {
+
+    app.innerHTML = `
+
+        <section class="products-page">
+
+            <h1 class="page-title">
+                Our Products
+            </h1>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search products..."
+                >
+
+            </div>
+
+            <div
+                class="categories"
+                id="categories">
+            </div>
+
+            <div
+                class="product-grid"
+                id="productGrid">
+            </div>
+
+        </section>
+
+    `;
+
+    createCategories();
+
+    displayProducts(products);
+
+    document
+        .getElementById("searchInput")
+        .addEventListener(
+            "input",
+            searchProducts
+        );
+}
 
 
-    // Temperature
-    temperature.textContent =
-        Math.round(current.temperature_2m);
+// ==========================================
+// CATEGORIES
+// ==========================================
 
+function createCategories() {
 
-    // Weather condition
-    condition.textContent =
-        getWeatherCondition(
-            current.weather_code
+    const categories = [
+        "All",
+        ...new Set(
+            products.map(
+                product => product.category
+            )
+        )
+    ];
+
+    const container =
+        document.getElementById("categories");
+
+    categories.forEach(category => {
+
+        const button =
+            document.createElement("button");
+
+        button.textContent = category;
+
+        button.className =
+            "category-button";
+
+        if (category === "All") {
+            button.classList.add("active");
+        }
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                document
+                    .querySelectorAll(
+                        ".category-button"
+                    )
+                    .forEach(btn =>
+                        btn.classList.remove(
+                            "active"
+                        )
+                    );
+
+                button.classList.add("active");
+
+                if (category === "All") {
+
+                    displayProducts(products);
+
+                } else {
+
+                    const filtered =
+                        products.filter(
+                            product =>
+                                product.category
+                                === category
+                        );
+
+                    displayProducts(filtered);
+                }
+            }
         );
 
+        container.appendChild(button);
 
-    // Humidity
-    humidity.textContent =
-        `${current.relative_humidity_2m}%`;
-
-
-    // Wind speed
-    windSpeed.textContent =
-        `${current.wind_speed_10m} km/h`;
-
-
-    // Feels like
-    feelsLike.textContent =
-        `${Math.round(
-            current.apparent_temperature
-        )}°C`;
-
-
-    // Cloud cover
-    cloudCover.textContent =
-        `${current.cloud_cover}%`;
-
-
-    // Show weather
-    weatherResult.style.display =
-        "block";
+    });
 }
 
 
-// ======================================
-// WEATHER CODE
-// ======================================
+// ==========================================
+// DISPLAY PRODUCTS
+// ==========================================
 
-function getWeatherCondition(code) {
+function displayProducts(productList) {
 
-    if (code === 0) {
-        return "☀️ Clear Sky";
+    const grid =
+        document.getElementById("productGrid");
+
+    grid.innerHTML = "";
+
+    if (productList.length === 0) {
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <h2>No products found</h2>
+
+                <p>
+                    Try another search.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
     }
 
-    if (code === 1 ||
-        code === 2 ||
-        code === 3) {
+    productList.forEach(product => {
 
-        return "⛅ Partly Cloudy";
-    }
+        const card =
+            document.createElement("div");
 
-    if (code === 45 ||
-        code === 48) {
+        card.className = "product-card";
 
-        return "🌫️ Fog";
-    }
+        card.innerHTML = `
 
-    if (
-        code >= 51 &&
-        code <= 57
-    ) {
+            <img
+                src="${product.image}"
+                alt="${product.name}"
+                loading="lazy"
+            >
 
-        return "🌦️ Drizzle";
-    }
+            <div class="product-info">
 
-    if (
-        code >= 61 &&
-        code <= 67
-    ) {
+                <h3>
+                    ${product.name}
+                </h3>
 
-        return "🌧️ Rain";
-    }
+                <p class="category">
+                    ${product.category}
+                </p>
 
-    if (
-        code >= 71 &&
-        code <= 77
-    ) {
+                <p class="price">
+                    ₹${product.price.toLocaleString("en-IN")}
+                </p>
 
-        return "❄️ Snow";
-    }
+                <div class="product-buttons">
 
-    if (
-        code >= 80 &&
-        code <= 82
-    ) {
+                    <button
+                        class="view-button"
+                        onclick="
+                            location.hash =
+                            '#product-${product.id}'
+                        "
+                    >
+                        View
+                    </button>
 
-        return "🌧️ Rain Showers";
-    }
+                    <button
+                        class="add-button"
+                        onclick="
+                            addToCart(${product.id})
+                        "
+                    >
+                        Add to Cart
+                    </button>
 
-    if (
-        code === 95
-    ) {
+                </div>
 
-        return "⛈️ Thunderstorm";
-    }
+            </div>
 
-    if (
-        code === 96 ||
-        code === 99
-    ) {
+        `;
 
-        return "⛈️ Thunderstorm with Hail";
-    }
+        grid.appendChild(card);
 
-    return "Weather information available";
+    });
 }
 
 
-// ======================================
-// ERROR MESSAGE
-// ======================================
+// ==========================================
+// SEARCH
+// ==========================================
 
-function showError(message) {
+function searchProducts(event) {
 
-    errorMessage.textContent =
-        message;
+    const search =
+        event.target.value
+            .toLowerCase()
+            .trim();
 
-    errorMessage.style.display =
-        "block";
+    const filtered =
+        products.filter(product =>
 
-    weatherResult.style.display =
-        "none";
+            product.name
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            product.category
+                .toLowerCase()
+                .includes(search)
+        );
+
+    displayProducts(filtered);
 }
+
+
+// ==========================================
+// PRODUCT DETAILS
+// ==========================================
+
+function showProductDetails(id) {
+
+    const product =
+        products.find(
+            product => product.id === id
+        );
+
+    if (!product) {
+
+        showHome();
+
+        return;
+    }
+
+    app.innerHTML = `
+
+        <section class="details">
+
+            <div>
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                >
+
+            </div>
+
+            <div class="details-info">
+
+                <h1>
+                    ${product.name}
+                </h1>
+
+                <strong>
+                    ${product.category}
+                </strong>
+
+                <h2>
+                    ₹${product.price.toLocaleString("en-IN")}
+                </h2>
+
+                <p>
+                    ${product.description}
+                </p>
+
+                <button
+                    class="primary-button"
+                    onclick="
+                        addToCart(${product.id})
+                    "
+                >
+                    Add to Cart
+                </button>
+
+                <a href="#products">
+                    ← Back to Products
+                </a>
+
+            </div>
+
+        </section>
+
+    `;
+}
+
+
+// ==========================================
+// ABOUT
+// ==========================================
+
+function showAbout() {
+
+    app.innerHTML = `
+
+        <section class="about">
+
+            <h1>
+                About ShopEasy
+            </h1>
+
+            <p>
+                ShopEasy is a modern e-commerce
+                product catalog created as a
+                web development capstone project.
+            </p>
+
+            <br>
+
+            <p>
+                The application demonstrates
+                client-side routing, product
+                searching, category filtering,
+                product details and shopping
+                cart functionality.
+            </p>
+
+            <br>
+
+            <p>
+                The website is responsive and
+                designed for both desktop and
+                mobile devices.
+            </p>
+
+        </section>
+
+    `;
+}
+
+
+// ==========================================
+// ADD TO CART
+// ==========================================
+
+function addToCart(id) {
+
+    const product =
+        products.find(
+            product => product.id === id
+        );
+
+    if (!product) {
+        return;
+    }
+
+    cart.push(product);
+
+    saveCart();
+
+    updateCartCount();
+
+    alert(
+        product.name +
+        " added to cart!"
+    );
+}
+
+
+// ==========================================
+// SAVE CART
+// ==========================================
+
+function saveCart() {
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+}
+
+
+// ==========================================
+// CART COUNT
+// ==========================================
+
+function updateCartCount() {
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    if (cartCount) {
+        cartCount.textContent = cart.length;
+    }
+}
+
+
+// ==========================================
+// SHOW CART
+// ==========================================
+
+function showCart() {
+
+    app.innerHTML = `
+
+        <section class="cart-page">
+
+            <h1 class="page-title">
+                Shopping Cart
+            </h1>
+
+            <div id="cartItems"></div>
+
+        </section>
+
+    `;
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+
+            <div class="empty">
+
+                <h2>
+                    Your cart is empty
+                </h2>
+
+                <br>
+
+                <a
+                    href="#products"
+                    class="primary-button"
+                >
+                    Browse Products
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach((product, index) => {
+
+        total += product.price;
+
+        cartItems.innerHTML += `
+
+            <div class="cart-item">
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                >
+
+                <div class="cart-item-info">
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <p>
+                        ₹${product.price.toLocaleString("en-IN")}
+                    </p>
+
+                </div>
+
+                <button
+                    class="remove-button"
+                    onclick="
+                        removeFromCart(${index})
+                    "
+                >
+                    Remove
+                </button>
+
+            </div>
+
+        `;
+    });
+
+    cartItems.innerHTML += `
+
+        <div class="total">
+
+            Total:
+            ₹${total.toLocaleString("en-IN")}
+
+        </div>
+
+    `;
+}
+
+
+// ==========================================
+// REMOVE FROM CART
+// ==========================================
+
+function removeFromCart(index) {
+
+    cart.splice(index, 1);
+
+    saveCart();
+
+    updateCartCount();
+
+    showCart();
+}
+
+
+// ==========================================
+// CART BUTTON
+// ==========================================
+
+document
+    .getElementById("cartButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            location.hash = "#cart";
+
+        }
+    );
+
+
+// ==========================================
+// START
+// ==========================================
+
+updateCartCount();
+
+router();
