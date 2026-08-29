@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="todo-app">
+
+            <h1>TaskFlow</h1>
+            <p class="subtitle">JavaScript To-Do List</p>
+
+            <!-- Add Task -->
+            <form id="todoForm">
+                <input 
+                    type="text" 
+                    id="todoInput" 
+                    placeholder="Enter a task..."
+                    required
+                >
+                <button type="submit">Add Task</button>
+            </form>
+
+            <!-- Filters -->
+            <div class="filters">
+                <button class="filter active" data-filter="all">
+                    All
+                </button>
+
+                <button class="filter" data-filter="active">
+                    Active
+                </button>
+
+                <button class="filter" data-filter="completed">
+                    Completed
+                </button>
+
+                <button id="clearCompleted">
+                    Clear Completed
+                </button>
+            </div>
+
+            <!-- Task List -->
+            <ul id="todoList"></ul>
+
+            <!-- Empty Message -->
+            <div id="emptyMessage">
+                <h3>No tasks yet</h3>
+                <p>Add your first task above.</p>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <span id="taskCount">0 tasks</span>
+                <span id="remainingCount">0 remaining</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
